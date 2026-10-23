@@ -3,6 +3,8 @@ cd /out && python3 -m http.server ${PORT:-10000} --directory /out >/out/http.log
 echo "started $(date -u) mode=${MODE:-crawl}" > /out/STATUS
 if [ "${MODE}" = "php" ]; then
   python3 /app/php_check_env.py > /out/php_check.log 2>&1
+elif [ "${MODE}" = "fetchplugins" ]; then
+  python3 /app/fetch_plugins.py > /out/fetch.log 2>&1
 elif [ "${MODE}" = "plugins" ]; then
   python3 /app/plugins_check.py > /out/plugins.log 2>&1
 else
