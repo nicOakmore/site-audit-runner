@@ -183,10 +183,10 @@ class Crawler:
         for attempt in range(3):
             try:
                 t0 = time.time()
-                resp = page.goto(url, wait_until="domcontentloaded", timeout=45000)
+                resp = page.goto(url, wait_until="domcontentloaded", timeout=30000)
                 ttfb = int((time.time() - t0) * 1000)
                 try:
-                    page.wait_for_load_state("networkidle", timeout=12000)
+                    page.wait_for_load_state("networkidle", timeout=2500)
                 except Exception:
                     pass
                 if CHALLENGE.search(page.title() or ""):
